@@ -1,6 +1,8 @@
 # LojaTesteConhecimento
 Esse projeto é voltado para o teste de conhecimentos técnicos em Desenvolvimento de Sistemas.
 
+Corrigir o validador "apenasNumeros" para aceitar pontos e virgulas e criar o sistema voltado para encerrar compra.
+
     package loja.aprimorada;
     import java.util.Scanner;
     //@author Pedro Gusmao

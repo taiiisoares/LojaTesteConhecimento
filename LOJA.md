@@ -2,8 +2,8 @@
 Esse projeto é voltado para o teste de conhecimentos técnicos em Desenvolvimento de Sistemas.
 
     package loja.aprimorada;
-
     import java.util.Scanner;
+    import java.util.Random;
     import static loja.aprimorada.Utilidades.ajusteVetorCarrinho;
     import static loja.aprimorada.Utilidades.ajusteVetorProdutos;
     import static loja.aprimorada.Utilidades.espera;
@@ -20,16 +20,15 @@ Esse projeto é voltado para o teste de conhecimentos técnicos em Desenvolvimen
             String validador;
             if(itens > 0){
                 slot = itens;
-            }
-            while(slot < 20){
+            }while(slot < 20){
                 validacaoValor = 0;
                 while(validacaoValor == 0){
                     System.out.printf("\nDigite o nome do produto Nº %s: ",slot+1);
-                    BancoDeDados.produtos[slot] = leia.nextLine();  
+                    BancoDeDados.produtos[slot] = leia.nextLine();
                     if("".equals(BancoDeDados.produtos[slot])){
-                            System.out.printf("\nDigite o nome do produto Nº %s: ",slot+1);
-                            BancoDeDados.produtos[slot] = "vazio";
-                            BancoDeDados.produtos[slot] = leia.nextLine();
+                        System.out.printf("\nDigite o nome do produto Nº %s: ",slot+1);
+                        BancoDeDados.produtos[slot] = "vazio";
+                        BancoDeDados.produtos[slot] = leia.nextLine();
                     }
                     if("".equals(BancoDeDados.produtos[slot])){
                         validacaoValor = 0;
@@ -48,7 +47,7 @@ Esse projeto é voltado para o teste de conhecimentos técnicos em Desenvolvimen
                         System.out.printf("Digite o preço do produto N° %s: ",slot+1,"\n"); //a pessoa coloca o preço e tals
                         validador = leia.nextLine();
                         if(Validadores.apenasNumeros(validador)){
-                            BancoDeDados.produtoPreco[slot] =  Double.parseDouble(validador);                                       
+                            BancoDeDados.produtoPreco[slot] =  Double.parseDouble(validador);
                             if(BancoDeDados.produtoPreco[slot] == 0){
                                 validacaoValor = 0;
                                 System.out.println("\nVocê deve adicionar um preço!!\n");
@@ -67,10 +66,10 @@ Esse projeto é voltado para o teste de conhecimentos técnicos em Desenvolvimen
             Scanner leia = new Scanner(System.in);
             int indice, slot = 0, itens = exibirCarrinho(), quantidade = totalProdutos();
             if(itens > 0){
-                slot = itens;    
+                slot = itens;
             }
             boolean carrinhoVazio = "vazio".equals(BancoDeDados.produtos[0]);
-            if(!carrinhoVazio){    
+            if(!carrinhoVazio){
                 while(slot < 20){
                     String validador;
                     exibirProdutos();
@@ -78,7 +77,7 @@ Esse projeto é voltado para o teste de conhecimentos técnicos em Desenvolvimen
                     validador = leia.nextLine();
                     if(Validadores.apenasNumeros(validador)){
                         indice = Integer.parseInt(validador);
-                        if(indice <= quantidade){   
+                        if(indice <= quantidade){
                             if(indice == 0){
                                 BancoDeDados.carrinho[slot] = "vazio";
                                 slot = 20;
@@ -113,13 +112,13 @@ Esse projeto é voltado para o teste de conhecimentos técnicos em Desenvolvimen
         public static int exibirProdutos(){
             System.out.println("Lista de Produtos!!");
             int itens = 0;
-            for(int i = 0; i < 20; i++){            
-                if("vazio".equals(BancoDeDados.produtos[i])){    
-                   //nada
+            for(int i = 0; i < 20; i++){
+                if("vazio".equals(BancoDeDados.produtos[i])){
+                    //nada
                 }else{
-                    if(i < 9){    
+                    if(i < 9){
                         System.out.print("0"+(i+1)+" "+BancoDeDados.produtos[i]);
-                        itens += 1;            
+                        itens += 1;
                         System.out.println("\t\t R$ "+BancoDeDados.produtoPreco[i]);
                     }else{
                         System.out.print((i+1)+" "+BancoDeDados.produtos[i]);
@@ -132,13 +131,13 @@ Esse projeto é voltado para o teste de conhecimentos técnicos em Desenvolvimen
         }
         public static int exibirCarrinho(){
             int itens = 0;
-            for(int i = 0; i < 20; i++){            
-                if("vazio".equals(BancoDeDados.carrinho[i])){    
-                   //nada
+            for(int i = 0; i < 20; i++){
+                if("vazio".equals(BancoDeDados.carrinho[i])){
+                    //nada
                 }else{
-                    if(i < 9){    
+                    if(i < 9){
                         System.out.print("0"+(i+1)+" "+BancoDeDados.carrinho[i]);
-                        itens += 1;            
+                        itens += 1;
                         System.out.println("\t\t R$ "+BancoDeDados.carrinhoPreco[i]);
                     }else{
                         System.out.print((i+1)+" "+BancoDeDados.carrinho[i]);
@@ -188,15 +187,15 @@ Esse projeto é voltado para o teste de conhecimentos técnicos em Desenvolvimen
                     ajusteVetorProdutos();
                     for(int slot = 0; slot < 20; slot++){
                         if("vazio".equals(auxiliar[slot])){
-                           //nada
-                        }else{                      
-                           BancoDeDados.produtos[indiceAux] = auxiliar[slot];
-                           BancoDeDados.produtoPreco[indiceAux] = auxiliarPreco[slot];
-                           indiceAux++;
+                            //nada
+                        }else{
+                            BancoDeDados.produtos[indiceAux] = auxiliar[slot];
+                            BancoDeDados.produtoPreco[indiceAux] = auxiliarPreco[slot];
+                            indiceAux++;
                         }
                     }
-                    break;
-                case 2: 
+                break;
+                case 2:
                     for(int indice = 0; indice < 20; indice++){
                         auxiliar[indice] = BancoDeDados.carrinho[indice];
                         auxiliarPreco[indice] = BancoDeDados.carrinhoPreco[indice];
@@ -204,14 +203,14 @@ Esse projeto é voltado para o teste de conhecimentos técnicos em Desenvolvimen
                     ajusteVetorCarrinho();
                     for(int slot = 0; slot < 20; slot++){
                         if("vazio".equals(auxiliar[slot])){
-                           //nada
-                        }else{                      
-                           BancoDeDados.carrinho[indiceAux] = auxiliar[slot];
-                           BancoDeDados.carrinhoPreco[indiceAux] = auxiliarPreco[slot];
-                           indiceAux++;
+                            //nada
+                        }else{
+                            BancoDeDados.carrinho[indiceAux] = auxiliar[slot];
+                            BancoDeDados.carrinhoPreco[indiceAux] = auxiliarPreco[slot];
+                            indiceAux++;
                         }
                     }
-                    break;
+                break;
             }
         }
         public static void produto(){
@@ -219,13 +218,13 @@ Esse projeto é voltado para o teste de conhecimentos técnicos em Desenvolvimen
             int escolha, itens;
             boolean repetir = false;
             String validador;
-            while(repetir == false){       
+            while(repetir == false){
                 System.out.println("==================__M E N U__P R O D U T O S__==================");
                 System.out.println("Escolha um opção:\n1) Adicionar\t3) Visualizar\n2) Remover\t4) Inicio");
                 validador = leia.nextLine();
                 if(Validadores.apenasNumeros(validador)){
                     escolha = Integer.parseInt(validador);
-                    limpa();                   
+                    limpa();
                     switch (escolha) {
                         case 1:
                             System.out.println("Software versão BETA, suporta apenas 20 itens!!");
@@ -234,7 +233,7 @@ Esse projeto é voltado para o teste de conhecimentos técnicos em Desenvolvimen
                             exibirTotal(1);
                             limpa();
                             break;
-                        case 2:                                    
+                        case 2:
                             boolean repetirSub = false;
                             String validadorSub;
                             while(repetirSub == false){
@@ -244,31 +243,31 @@ Esse projeto é voltado para o teste de conhecimentos técnicos em Desenvolvimen
                                 System.out.printf("Há %s itens na lista.\n",itens);
                                 System.out.println("\n================================================================\n");
                                 System.out.println("Digite 0 para voltar!!");
-                                if(itens > 0){   
+                                if(itens > 0){
                                     validadorSub = leia.nextLine();
                                     if(Validadores.apenasNumeros(validadorSub)){
                                         indice = Integer.parseInt(validadorSub);
                                     }else{
                                         System.out.println("\nDigite apenas numeros!\n");
                                         espera();
-                                    }                             
+                                    }
                                 }else{
                                     repetirSub = true;
                                 }
                                 if(indice == 0){
                                     repetirSub = true;
                                 }else{
-                                    removerItem(indice, 1);                     
+                                    removerItem(indice, 1);
                                 }
                                 limpa();
                             }
                             limpa();
                             break;
-                        case 3:                
+                        case 3:
                             itens = exibirProdutos();
-                            if(itens == 0){    
+                            if(itens == 0){
                                 System.out.println("\n================================================================");
-                                System.out.println("L I S T A  V A Z I A !!");    
+                                System.out.println("L I S T A  V A Z I A !!");
                                 System.out.println("\n================================================================");
                                 System.out.println("L I S T A  V A Z I A !!");
                             }else{
@@ -278,18 +277,18 @@ Esse projeto é voltado para o teste de conhecimentos técnicos em Desenvolvimen
                                 }else{
                                     System.out.printf("\nNa lista tem %s produtos.",itens);
                                     exibirTotal(1);
-                                }  
+                                }
                             }
                             espera();
                             limpa();
-                            break;               
+                            break;
                         case 4:
                             System.out.println("Você optou voltar para o inicio!!");
                             repetir = true;
-                            break;                
+                            break;
                         default:
                             System.out.println("Escolha uma opção válida!");
-                            break; 
+                            break;
                     }
                 }else{
                     limpa();
@@ -326,7 +325,7 @@ Esse projeto é voltado para o teste de conhecimentos técnicos em Desenvolvimen
                                 System.out.printf("Há %s itens na lista.\n",itens);
                                 System.out.println("\n================================================================\n");
                                 System.out.println("Digite 0 para voltar!!");
-                                if(itens > 0){   
+                                if(itens > 0){
                                     validadorSub = leia.nextLine();
                                     if(Validadores.apenasNumeros(validadorSub)){
                                         indice = Integer.parseInt(validadorSub);
@@ -334,12 +333,12 @@ Esse projeto é voltado para o teste de conhecimentos técnicos em Desenvolvimen
                                         System.out.println("\nDigite apenas numeros!\n");
                                     }
                                 }else{
-                                        repetirSub = true;
+                                    repetirSub = true;
                                 }
                                 if(indice == 0){
                                     repetirSub = true;
                                 }else{
-                                    removerItem(indice, 2);                     
+                                    removerItem(indice, 2);
                                 }
                                 limpa();
                             }
@@ -347,9 +346,9 @@ Esse projeto é voltado para o teste de conhecimentos técnicos em Desenvolvimen
                             break;
                         case 3:
                             itens = exibirCarrinho();
-                            if(itens == 0){    
+                            if(itens == 0){
                                 System.out.println("\n================================================================");
-                                System.out.println("L I S T A  V A Z I A !!");    
+                                System.out.println("L I S T A  V A Z I A !!");
                                 System.out.println("\n================================================================");
                                 System.out.print("L I S T A  V A Z I A !!");
                             }else{
@@ -376,29 +375,100 @@ Esse projeto é voltado para o teste de conhecimentos técnicos em Desenvolvimen
                     limpa();
                     System.out.println("\nDigite apenas numeros!\n");
                 }
-            }               
+            }
+        }
+        public static void boleto(){
+            Scanner leia = new Scanner(System.in);
+            String nome, CPF;
+            System.out.println("Digite seu nome completo: ");
+            nome = leia.nextLine();
+            System.out.println("Digite seu CPF/CNPJ (com pontos e traços): ");
+            CPF = leia.next();
+            System.out.println("Gerando boleto...");
+            espera();
+            limpa();
+            System.out.println("BANCO DO BRASIL\t|009|\t00190.50095.40144.816069 06809.350314 3 373700000001003\n\nPagável em qualquer banco até o vencimento. Após atualize o boleto no site");
+            System.out.println("__________________________________________________________________________________\nNome: "+nome+"\t\tData de vencimento: Até 2 dias úteis\nCPF/CNPJ do cliente: "+CPF);
+            System.out.println("__________________________________________________________________________________\nCódigo de barras: \n");
+            System.out.println("|||||||||||||||||||||||||||||||||\n__________________________________________________________________________________\n\n");
+        }
+        public static void addCartao(){
+            Scanner leia = new Scanner(System.in);
+            int numCartaoCredito, validade, cvv, cpf, tipoCartao;
+            String nome, apelidoCartao;
+            System.out.println("Qual tipo de cartão? \n1) Débito\n2) Crédito\n3) Vale alimentação\n");
+            tipoCartao = leia.nextInt();
+            System.out.println("\nDigite o número do cartão: ");
+            numCartaoCredito = leia.nextInt();
+            System.out.println("Digite o nome impresso no cartão: ");
+            nome = leia.next();
+            System.out.println("Validade: "); //validade ainda está dando erro no Scanner.
+            validade = leia.nextInt();
+            System.out.println("CVV: ");
+            cvv = leia.nextInt();
+            /*System.out.println("Digite um apelido para o cartão: "); 
+            ****apelido do cartão, se quiser****
+            apelidoCartao = leia.next();*/
+            System.out.println("CPF/CNPJ do titular: ");
+            cpf = leia.nextInt();    
+        }
+        public static void pix(){
+            Random gerador = new Random();
+            System.out.println("Gerando chave pix...");
+            espera();
+            limpa();
+            System.out.println("Chave Pix: \n");
+            for(int i = 0; i <16; i++){
+                System.out.print(gerador.nextInt(99));
+            }
+            System.out.println("\n\nCom esta chave você conseguirá pagar sua fatura.");
+            espera();
+            limpa();
         }
         public static void encerrarCompras(){
+            
             Scanner leia = new Scanner(System.in);
             String res = "n";
+            int pagamento, esc;
             boolean repetir = false;
             while(repetir == false){
                 do{
                     System.out.println("Itens no carrinho!!");
                     exibirCarrinho();
                     exibirTotal(2);
-                    System.out.println("Deseja encerrar as compras? S ou N");
+                    System.out.println("\nDeseja encerrar as compras? S ou N");
                     if(!apenas_s_ou_n(res)){
                         System.out.println("\nDigite apenas S ou N!\n");
                     }
-                    res = leia.nextLine();            
+                    res = leia.nextLine();
                 }while(!apenas_s_ou_n(res));
                 if("s".equals(res)){
-
+                    System.out.println("\n\nFORMAS DE PAGAMENTO: \n1) Cadastrar Cartão \n2) Cartões cadastrados\n3) Pix\n4) Boleto\n4) Voltar ao menu");
+                    System.out.println("\n\nSelecione a forma de pagamento: ");
+                    pagamento = leia.nextInt();
+                    switch(pagamento){
+                        case 1:
+                            limpa();
+                            addCartao();
+                            break;
+                        case 2: 
+                            break;
+                        case 3:
+                            limpa();
+                            pix();
+                            break;
+                        case 4:
+                            limpa();
+                            boleto();
+                            break;
+                        default:
+                            System.out.println("Escolha uma opção válida!!");
+                    }
+                    ajusteVetorCarrinho();
+                    repetir = true;
                 }else{
                     repetir = true;
                 }
             }
         }
     }
-
